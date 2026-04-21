@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SimpleNavApp")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a91dbbc327bb70f81f64ece367290c3994300473")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ea9cfce70b9956327d147559fe25b82a64c5fd12")]
 [assembly: System.Reflection.AssemblyProductAttribute("SimpleNavApp")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SimpleNavApp")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
