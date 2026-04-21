@@ -1,0 +1,50 @@
+name: Publicar en GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9.0.x"
+
+      - name: Publicar Blazor WebAssembly
+        run: dotnet publish SimpleNavApp/SimpleNavApp.csproj -c Release -o publish
+
+      - name: Base href para proyecto en subruta de Pages
+        run: |
+          sed -i 's|<base href="/" />|<base href="/proyecto-equipo-OFICINA/" />|' publish/wwwroot/index.html
+
+      - name: SPA en GitHub Pages (rutas directas)
+        run: cp publish/wwwroot/index.html publish/wwwroot/404.html
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: publish/wwwroot
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Desplegar
+        id: deployment
+        uses: actions/deploy-pages@v4

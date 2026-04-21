@@ -1,0 +1,1 @@
+C:\CursoDevOps\proyecto-equipo-OFICINA\publish-test\web.config
